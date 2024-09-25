@@ -1,3 +1,5 @@
+import 'package:currency_forex_app/presentation/widgets/button_nav_bar.dart';
+
 import '../theme.dart';
 
 import '../widgets/home_body_titles.dart';
@@ -9,26 +11,10 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final List<RectangleModel> data = RectangleData().data;
-
-  int _currentIndex = 0;
-
-  final List bodys = [
-    homeBody(),
-    const Center(child: Icon(Icons.abc)),
-    const Center(child: Icon(Icons.shopping_bag_rounded)),
-    const Center(child: Icon(Icons.date_range_outlined)),
-    const Center(child: Icon(Icons.list_alt_outlined)),
-    const Center(child: Icon(Icons.person)),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,42 +36,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: bodys[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
-          currentIndex: _currentIndex,
-          onTap: (value) {
-            setState(() {
-              _currentIndex = value;
-            });
-          },
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedIconTheme: const IconThemeData(color: MyColors.bannerColor),
-          unselectedIconTheme: const IconThemeData(color: Colors.grey),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag_rounded),
-              label: "",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.date_range_outlined),
-              label: "",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_rounded),
-              label: "",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "",
-            ),
-          ],
-        ),
+        body: homeBody(),
+        bottomNavigationBar: const ButtonNavBar(),
       ),
     );
   }
