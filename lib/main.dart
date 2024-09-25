@@ -1,22 +1,34 @@
-import 'presentation/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'presentation/screens/dark_home.dart';
+import 'presentation/screens/light_home.dart';
+import 'presentation/theme.dart';
 
 void main(List<String> args) {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  bool isDark(BuildContext context) {
+    return context.read<ThemeProvider>().themeData.brightness ==
+        Brightness.dark;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeProvider>().themeData;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: GoogleFonts.roboto().fontFamily,
-      ),
-      home:  HomePage(),
+      theme: theme,
+      home: isDark(context) ? const DarkHome() : const HomePage(),
     );
   }
 }

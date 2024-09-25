@@ -1,6 +1,7 @@
-import '../../models/rectangle_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../models/rectangle_data.dart';
 
 class HomeRectangle extends StatelessWidget {
   const HomeRectangle({
@@ -42,6 +43,7 @@ class HomeRectangle extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               )
             ],

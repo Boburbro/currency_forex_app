@@ -6,6 +6,11 @@ import '../theme.dart';
 class WalletBanner extends StatelessWidget {
   const WalletBanner({super.key});
 
+  bool isDarkTheme(BuildContext context) {
+  
+    return Theme.of(context).brightness == Brightness.dark;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,7 +115,9 @@ class WalletBanner extends StatelessWidget {
                 ),
               ),
               SvgPicture.asset(
-                'assets/icons/wallet_banner/random.svg',
+                isDarkTheme(context)
+                    ? 'assets/icons/wallet_banner/random1.svg'
+                    : 'assets/icons/wallet_banner/random.svg',
                 height: 20,
                 width: 20,
               )
